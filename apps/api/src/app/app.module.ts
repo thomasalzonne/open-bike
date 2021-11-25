@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { User } from './user/entities/user.entity';
+import { LocationModule } from '../location/location.module';
 
 require('dotenv').config();
 @Module({
@@ -20,7 +21,7 @@ require('dotenv').config();
       entities: [User],
       synchronize: true,
     }),
-    UserModule, AuthModule
+    UserModule, AuthModule, LocationModule
   ],
   controllers: [AppController],
   providers: [AppService],
