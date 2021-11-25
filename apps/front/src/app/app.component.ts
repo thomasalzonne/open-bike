@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 @Injectable()
 export class AppComponent {
-  constructor(private router: Router, private socket: Socket) {}
+  constructor(private socket: Socket) {}
 
   toggleSelectedState(): void{
     this.socket.emit('message','Bonjour à tous')
