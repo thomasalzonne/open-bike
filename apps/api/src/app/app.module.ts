@@ -3,8 +3,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { User } from './user/entities/user.entity';
 
-require('dotenv').config()
+require('dotenv').config();
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -14,9 +17,10 @@ require('dotenv').config()
       username: process.env.NX_DATABASE_USER,
       password: process.env.NX_DATABASE_PASS,
       database: process.env.NX_DATABASE_NAME,
-      entities: [],
+      entities: [User],
       synchronize: true,
     }),
+    UserModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

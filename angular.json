@@ -189,6 +189,29 @@
       },
       "tags": [],
       "implicitDependencies": ["front"]
+    },
+    "lib": {
+      "root": "libs/lib",
+      "sourceRoot": "libs/lib/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/lib/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib"],
+          "options": {
+            "jestConfig": "libs/lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

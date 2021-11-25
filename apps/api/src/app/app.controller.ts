@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { Message } from '@open-bike/api-interfaces';
 
@@ -8,7 +9,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
+  @UseGuards(AuthGuard('local'))
+  @Get('')
   getData(): Message {
     return this.appService.getData();
   }
