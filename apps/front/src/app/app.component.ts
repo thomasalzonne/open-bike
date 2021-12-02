@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@open-bike/api-interfaces';
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { map } from 'rxjs/operators';
 @Component({
   selector: 'open-bike-root',
   templateUrl: './app.component.html',

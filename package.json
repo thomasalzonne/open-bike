@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-    "start": "nx serve",
-    "build": "nx build",
+    "start": "node dist/apps/api/main.js",
+    "build": "nx run-many --target=build --projects=api,front",
     "test": "nx test"
   },
   "private": true,
@@ -28,6 +28,8 @@
     "@nestjs/typeorm": "^8.0.2",
     "@nestjs/websockets": "^8.2.3",
     "@nrwl/angular": "13.1.2",
+    "babylonjs": "^4.2.0",
+    "babylonjs-loaders": "^4.2.0",
     "dotenv": "^10.0.0",
     "mysql2": "^2.3.3",
     "ngx-socket-io": "^3.4.0",
