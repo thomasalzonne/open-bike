@@ -8,7 +8,7 @@ export class AuthController {
     constructor(private jwtService: JwtService) {}
 
     @UseGuards(AuthGuard('local'))
-    @Post('')
+    @Post('login')
     async login(@Request() req) {
         return  this.jwtService.signAsync({ id: req.user.id });
     }
