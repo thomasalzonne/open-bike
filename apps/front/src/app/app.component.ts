@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 @Component({
   selector: 'open-bike-root',
@@ -8,7 +9,9 @@ import { Socket } from 'ngx-socket-io';
 })
 @Injectable()
 export class AppComponent {
-  constructor(private socket: Socket) {}
+  constructor(private socket: Socket, private route: ActivatedRoute) {
+    this.route.url.subscribe(route => console.log(route))
+  }
 
   toggleSelectedState(): void{
     this.socket.emit('message','Bonjour à tous')

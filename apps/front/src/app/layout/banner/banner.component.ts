@@ -27,7 +27,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     this.scene = new BABYLON.Scene(this.engine);
     this.scene.autoClear = false
     this.camera = new BABYLON.FreeCamera('main', new BABYLON.Vector3(0, 5, -10), this.scene)
-    this.camera.fov = 0.5
+    this.camera.fov = 0.4
     this.camera.attachControl(true)
     this.light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(1, 1, 0), this.scene)
 
@@ -49,7 +49,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     const material = new BABYLON.StandardMaterial('world', this.scene)
     material.diffuseTexture = texture
     // material.emissiveTexture = texture
-    material.emissiveColor = new BABYLON.Color3(0.07, 0.15, 0.29)
+    material.emissiveColor = new BABYLON.Color3(0.036, 0.15, 0.29)
     planet.material = material
     material.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4)
 
@@ -58,7 +58,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
       planet.rotation.x += this.engine.getDeltaTime() * 0.00005
     })
 
-    if(filter) {
+    if (filter) {
       const gl = new BABYLON.GlowLayer("glow", this.scene, {
         mainTextureFixedSize: 1024,
         blurKernelSize: 256
@@ -75,66 +75,67 @@ export class BannerComponent implements OnInit, AfterViewInit {
     BABYLON.SceneLoader.ImportMeshAsync('', 'assets/', 'bike.glb', this.scene).then((mesh) => {
       const bike = mesh.meshes[0]
 
-      bike.position = this.planet!.position
-      bike.position = bike.position.add(new BABYLON.Vector3(0, this.radius + 3, -2))
+      bike.position = this.camera.position.add(new BABYLON.Vector3(
+        0, 0, 3
+      ))
+      bike.rotate(new BABYLON.Vector3(1, 1, 0), Math.PI / 3, BABYLON.Space.LOCAL)
+      // bike.
+      // bike.position = bike.position.add(new BABYLON.Vector3(0, this.radius + 3, -2))
       bike.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3)
       this.scene.registerBeforeRender(() => {
-        bike.moveWithCollisions(
-          new BABYLON.Vector3(
-            this.planet!.position.x - bike.position.x,
-            this.planet!.position.y - bike.position.y,
-            this.planet!.position.z - bike.position.z,
-          ).scaleInPlace(0.05)
-        )
+        const dt = this.engine.getDeltaTime() / 100
+
+        bike.rotate(new BABYLON.Vector3(1, 1, 0), 0.01 * dt)
+        bike.position = bike.position.add(new BABYLON.Vector3(0.002 * dt, 0.0003 * dt, 0.0001 * dt))
       })
     })
   }
 
   generateParticles() {
-  
-      //Sphere around emitter
-      const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:0.01, segments: 8}, this.scene);
-      sphere.material = new BABYLON.StandardMaterial("mat", this.scene);
-      sphere.material.wireframe = true;
-  
-      // Create a particle system
-      const particleSystem = new BABYLON.ParticleSystem("particles", 2000, this.scene);
-  
-      //Texture of each particle
-      particleSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.scene);
-  
-      // Where the particles come from
-      particleSystem.emitter = BABYLON.Vector3.Zero(); // the starting location
-  
-      // Colors of all particles
-      particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
-      particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
-      particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
-  
-      // Size of each particle (random between...
-      particleSystem.minSize = 0.01;
-      particleSystem.maxSize = 0.2;
-  
-      // Life time of each particle (random between...
-      particleSystem.minLifeTime = 0.3;
-      particleSystem.maxLifeTime = 1.5;
-  
-      // Emission rate
-      particleSystem.emitRate = 75;
-  
-  
-      /******* Emission Space ********/
-      particleSystem.createBoxEmitter(new BABYLON.Vector3(-10, 10, 10),
-                                      new BABYLON.Vector3(-10, 10, 10),
-                                      new BABYLON.Vector3(-1, -20, -2.5),
-                                      new BABYLON.Vector3(1, 20, 2.5));
-  
-      // Speed
-      particleSystem.minEmitPower = 0.1;
-      particleSystem.maxEmitPower = 1;
-      particleSystem.updateSpeed = 0.005;
-  
-      // Start the particle system
-      particleSystem.start();
+
+    //Sphere around emitter
+    const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 0.01, segments: 8 }, this.scene);
+    sphere.material = new BABYLON.StandardMaterial("mat", this.scene);
+    sphere.material.wireframe = true;
+
+    // Create a particle system
+    const particleSystem = new BABYLON.ParticleSystem("particles", 2000, this.scene);
+
+    //Texture of each particle
+    particleSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.scene);
+
+    // Where the particles come from
+    particleSystem.emitter = BABYLON.Vector3.Zero(); // the starting location
+
+    // Colors of all particles
+    particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+    particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+    particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Size of each particle (random between...
+    particleSystem.minSize = 0.01;
+    particleSystem.maxSize = 0.2;
+
+    // Life time of each particle (random between...
+    particleSystem.minLifeTime = 0.3;
+    particleSystem.maxLifeTime = 1.5;
+
+    // Emission rate
+    particleSystem.emitRate = 75;
+
+
+    /******* Emission Space ********/
+    particleSystem.createBoxEmitter(new BABYLON.Vector3(-10, 10, 10),
+      new BABYLON.Vector3(-10, 10, 10),
+      new BABYLON.Vector3(-1, -20, -2.5),
+      new BABYLON.Vector3(1, 20, 2.5));
+
+    // Speed
+    particleSystem.minEmitPower = 0.1;
+    particleSystem.maxEmitPower = 1;
+    particleSystem.updateSpeed = 0.005;
+
+    // Start the particle system
+    particleSystem.start();
   }
 }

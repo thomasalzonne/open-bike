@@ -1,0 +1,8 @@
+<open-bike-header></open-bike-header>
+<div class="pt-24">
+    <form [formGroup]="form" (submit)="submit()">
+        <input type="text" name="email" formGroupName="email" />
+        <input type="password" name="password" formGroupName="password" />
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
