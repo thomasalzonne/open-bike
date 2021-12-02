@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3333'};
+const config: SocketIoConfig = { url: '/' };
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, HttpClientModule, SocketIoModule.forRoot(config), LayoutModule],
