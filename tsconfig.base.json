@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@open-bike/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@open-bike/lib": ["libs/lib/src/index.ts"]
+      "@open-bike/lib": ["libs/lib/src/index.ts"],
+      "@open-bike/user": ["libs/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
