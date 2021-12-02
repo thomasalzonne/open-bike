@@ -10,3 +10,10 @@ export interface ManageUserDto{
   email : string;
   password : string;
 }
+
+export interface ManageStationDto{
+  name : string;
+  capacity : number;
+  lon : number;
+  lat : number;
+}
