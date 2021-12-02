@@ -1,0 +1,22 @@
+image: node:16
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    -node_modules/
+
+stages:
+  - package
+  - deploy
+
+build:
+  stage: package
+  script:
+    - npm ci
+    - npm run build
+
+heroku:
+  image: ruby:2.6
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=openbike --api-key=bd94f4f2-d893-4403-bbef-5987bec097b9
