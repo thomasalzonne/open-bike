@@ -26,7 +26,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     this.engine = new BABYLON.Engine(this.canvas.nativeElement);
     this.scene = new BABYLON.Scene(this.engine);
     this.scene.autoClear = false
-    this.camera = new BABYLON.FreeCamera('main', new BABYLON.Vector3(0, -5, -10), this.scene)
+    this.camera = new BABYLON.FreeCamera('main', new BABYLON.Vector3(0, 5, -10), this.scene)
     this.camera.fov = 0.5
     this.camera.attachControl(true)
     this.light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(1, 1, 0), this.scene)
@@ -86,7 +86,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
       const bike = mesh.meshes[0]
 
       bike.position = this.planet!.position
-      bike.position = bike.position.add(new BABYLON.Vector3(0, - this.radius - 3, -2))
+      bike.position = bike.position.add(new BABYLON.Vector3(0, this.radius + 3, -2))
       bike.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3)
       bike.checkCollisions = true
       this.scene.registerBeforeRender(() => {
