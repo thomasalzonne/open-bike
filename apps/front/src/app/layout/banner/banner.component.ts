@@ -124,8 +124,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
       particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
   
       // Size of each particle (random between...
-      particleSystem.minSize = 0.1;
-      particleSystem.maxSize = 0.5;
+      particleSystem.minSize = 0.01;
+      particleSystem.maxSize = 0.2;
   
       // Life time of each particle (random between...
       particleSystem.minLifeTime = 0.3;
@@ -142,8 +142,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
                                       new BABYLON.Vector3(1, 20, 2.5));
   
       // Speed
-      particleSystem.minEmitPower = 1;
-      particleSystem.maxEmitPower = 3;
+      particleSystem.minEmitPower = 0.1;
+      particleSystem.maxEmitPower = 1;
       particleSystem.updateSpeed = 0.005;
   
       // Start the particle system
