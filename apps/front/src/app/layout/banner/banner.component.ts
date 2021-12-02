@@ -40,7 +40,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
 
     // this.planet = this.generateWorld(true)
     this.planet = this.generateWorld(true)
-    this.generateBikes()
+    this.generateBike()
+    this.generateParticles()
 
     this.engine.runRenderLoop(() => {
       this.scene?.render()
@@ -81,7 +82,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     return planet
   }
 
-  generateBikes() {
+  generateBike() {
     BABYLON.SceneLoader.ImportMeshAsync('', 'assets/', 'bike.glb', this.scene).then((mesh) => {
       const bike = mesh.meshes[0]
 
@@ -101,4 +102,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     })
   }
 
+  generateParticles() {
+
+  }
 }
