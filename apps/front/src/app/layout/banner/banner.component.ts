@@ -16,7 +16,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
   camera!: BABYLON.Camera;
   light!: BABYLON.HemisphericLight;
   planet?: BABYLON.Mesh
-  radius = 3
+  radius = 8
   constructor() { }
 
   ngOnInit(): void {
@@ -90,8 +90,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
       bike.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3)
       bike.checkCollisions = true
       this.scene.registerBeforeRender(() => {
-        // bike.lookAt(this.planet!.position)
-        // bike.rotate(new BABYLON.Vector3(-1, 0, 0), Math.PI/2, BABYLON.Space.LOCAL)
         bike.moveWithCollisions(
           new BABYLON.Vector3(
             this.planet!.position.x - bike.position.x,
@@ -100,7 +98,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
           ).scaleInPlace(0.05)
         )
       })
-      this.scene.debugLayer.show()
     })
   }
 
