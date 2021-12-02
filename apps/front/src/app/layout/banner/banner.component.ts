@@ -30,15 +30,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
     this.camera.fov = 0.5
     this.camera.attachControl(true)
     this.light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(1, 1, 0), this.scene)
-    // this.light.diffuse = new BABYLON.Color3(0.07, 0.15, 0.29)
 
-    // const defaultPipeline = new BABYLON.DefaultRenderingPipeline("default", true, this.scene, [this.camera]);
-    // defaultPipeline.bloomEnabled = true;
-    // defaultPipeline.fxaaEnabled = false;
-    // defaultPipeline.bloomWeight = 1;
-    // defaultPipeline.bloomScale = 0.2
-
-    // this.planet = this.generateWorld(true)
     this.planet = this.generateWorld(true)
     this.generateBike()
     this.generateParticles()
@@ -53,15 +45,12 @@ export class BannerComponent implements OnInit, AfterViewInit {
     planet.position.y = 0
     planet.position.x = 4
     planet.rotation.x = Math.PI
-    planet.checkCollisions = true
-    // planet.ellipsoid = new BABYLON.Vector3(1, 0, 1)
     const texture = new BABYLON.Texture('assets/night.jpg', this.scene)
     const material = new BABYLON.StandardMaterial('world', this.scene)
     material.diffuseTexture = texture
     // material.emissiveTexture = texture
     material.emissiveColor = new BABYLON.Color3(0.07, 0.15, 0.29)
     planet.material = material
-    // material.useAlphaFromDiffuseTexture = true
     material.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4)
 
     planet.registerBeforeRender(() => {
@@ -89,7 +78,6 @@ export class BannerComponent implements OnInit, AfterViewInit {
       bike.position = this.planet!.position
       bike.position = bike.position.add(new BABYLON.Vector3(0, this.radius + 3, -2))
       bike.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3)
-      bike.checkCollisions = true
       this.scene.registerBeforeRender(() => {
         bike.moveWithCollisions(
           new BABYLON.Vector3(
