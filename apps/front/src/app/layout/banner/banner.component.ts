@@ -91,6 +91,50 @@ export class BannerComponent implements OnInit, AfterViewInit {
   }
 
   generateParticles() {
-
+  
+      //Sphere around emitter
+      const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:0.01, segments: 8}, this.scene);
+      sphere.material = new BABYLON.StandardMaterial("mat", this.scene);
+      sphere.material.wireframe = true;
+  
+      // Create a particle system
+      const particleSystem = new BABYLON.ParticleSystem("particles", 2000, this.scene);
+  
+      //Texture of each particle
+      particleSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.scene);
+  
+      // Where the particles come from
+      particleSystem.emitter = BABYLON.Vector3.Zero(); // the starting location
+  
+      // Colors of all particles
+      particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+      particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+      particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+  
+      // Size of each particle (random between...
+      particleSystem.minSize = 0.1;
+      particleSystem.maxSize = 0.5;
+  
+      // Life time of each particle (random between...
+      particleSystem.minLifeTime = 0.3;
+      particleSystem.maxLifeTime = 1.5;
+  
+      // Emission rate
+      particleSystem.emitRate = 75;
+  
+  
+      /******* Emission Space ********/
+      particleSystem.createBoxEmitter(new BABYLON.Vector3(-10, 10, 10),
+                                      new BABYLON.Vector3(-10, 10, 10),
+                                      new BABYLON.Vector3(-1, -20, -2.5),
+                                      new BABYLON.Vector3(1, 20, 2.5));
+  
+      // Speed
+      particleSystem.minEmitPower = 1;
+      particleSystem.maxEmitPower = 3;
+      particleSystem.updateSpeed = 0.005;
+  
+      // Start the particle system
+      particleSystem.start();
   }
 }
