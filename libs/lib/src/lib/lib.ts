@@ -4,6 +4,7 @@ export interface JWTPayload {
   id: number;
 }
 export interface ManageUserDto{
+  id : number; 
   firstName : string;
   lastName : string;
   role : string;
@@ -12,8 +13,21 @@ export interface ManageUserDto{
 }
 
 export interface ManageStationDto{
+  id : number; 
   name : string;
   capacity : number;
   lon : number;
   lat : number;
+}
+
+export interface ManageParkDto{
+  id : number; 
+  name : string;
+  city : string;
+  // stations : Station[];
+}
+
+export interface ManageBikeDto{
+  id : number; 
+  stationId : number;
 }

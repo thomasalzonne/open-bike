@@ -1,5 +1,6 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Park } from '../../park/entities/park.entity';
 
 @Entity()
 export class Station {
@@ -11,10 +12,13 @@ export class Station {
 
   @Column()
   capacity: number;
-
+  
   @Column()
   lon: number;
 
   @Column()
   lat: number;
+
+  @OneToOne(type => Park, park => park.id)
+  park:Park;
 }
