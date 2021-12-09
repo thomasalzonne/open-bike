@@ -23,6 +23,7 @@ export class BannerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    
     this.engine = new BABYLON.Engine(this.canvas.nativeElement);
     this.scene = new BABYLON.Scene(this.engine);
     this.scene.autoClear = false
@@ -54,8 +55,8 @@ export class BannerComponent implements OnInit, AfterViewInit {
     material.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4)
 
     planet.registerBeforeRender(() => {
-      planet.rotation.y += this.engine.getDeltaTime() * 0.00005
-      planet.rotation.x += this.engine.getDeltaTime() * 0.00005
+      planet.rotation.y += this.engine.getDeltaTime() * 0.00003
+      planet.rotation.x += this.engine.getDeltaTime() * 0.00003
     })
 
     if (filter) {

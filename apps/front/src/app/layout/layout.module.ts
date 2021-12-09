@@ -2,19 +2,19 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
-import { BannerComponent } from './banner/banner.component';
+import { BannerModule } from './banner/banner.module';
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    BannerComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    BannerModule
   ],
-  exports: [HeaderComponent, BannerComponent]
+  exports: [HeaderComponent]
 })
 export class LayoutModule { }

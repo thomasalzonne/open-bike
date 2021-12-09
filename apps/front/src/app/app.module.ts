@@ -8,6 +8,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component'
+import { BannerModule } from './layout/banner/banner.module';
 
 const config: SocketIoConfig = { url: '/' };
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [AppComponent, HomeComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, SocketIoModule.forRoot(config), LayoutModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, SocketIoModule.forRoot(config), LayoutModule, BannerModule],
   providers: [],
   bootstrap: [AppComponent],
 })
