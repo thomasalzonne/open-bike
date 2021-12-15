@@ -83,14 +83,19 @@
             "main": "apps/front/src/main.ts",
             "polyfills": "apps/front/src/polyfills.ts",
             "tsConfig": "apps/front/tsconfig.app.json",
-            "assets": ["apps/front/src/favicon.ico", "apps/front/src/assets",
+            "assets": [
+              "apps/front/src/favicon.ico",
+              "apps/front/src/assets",
               {
-              "glob": "**/*",
-              "input": "./node_modules/leaflet/dist/images",
-              "output": "assets/"
-              } 
-          ],
-            "styles": ["apps/front/src/styles.css","./node_modules/leaflet/dist/leaflet.css"],
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/"
+              }
+            ],
+            "styles": [
+              "apps/front/src/styles.css",
+              "./node_modules/leaflet/dist/leaflet.css"
+            ],
             "scripts": []
           },
           "configurations": {

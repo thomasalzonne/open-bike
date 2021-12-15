@@ -12,7 +12,7 @@ import { ManageStationDto, ManageParkDto } from '@open-bike/lib';
 export class CreateComponent {
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     capacity: new FormControl('', [Validators.required]),
     lon: new FormControl('', [Validators.required]),
     lat: new FormControl('', [Validators.required]),
