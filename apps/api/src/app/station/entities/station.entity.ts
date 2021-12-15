@@ -19,6 +19,6 @@ export class Station {
   @Column()
   lat: number;
 
-  @OneToOne(type => Park, park => park.id)
-  park:Park;
+  @ManyToOne(type => Park, park => park.id)
+  park: Park;
 }

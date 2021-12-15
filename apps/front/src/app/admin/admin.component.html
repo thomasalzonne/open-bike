@@ -1,0 +1,15 @@
+<open-bike-header></open-bike-header>
+<div class="flex w-full h-screen">
+    <div class="flex flex-col h-screen px-5 pt-24 border-r border-gray-100 shadow w-96">
+        <h2 class="py-2 font-medium">Entities</h2>
+        <a [routerLink]="'users'" class="block w-full px-2 py-2 rounded hover:bg-gray-100">Users</a>
+        <a [routerLink]="'parks'" class="block w-full px-2 py-2 rounded hover:bg-gray-100">Parks</a>
+        <a [routerLink]="'stations'" class="block w-full px-2 py-2 rounded hover:bg-gray-100">Stations</a>
+        <a [routerLink]="'bikes'" class="block w-full px-2 py-2 rounded hover:bg-gray-100">Bikes</a>
+    </div>
+    <div class="relative flex-grow h-screen pt-20 overflow-y-auto">
+        <router-outlet></router-outlet>
+    </div>
+    
+</div>
+

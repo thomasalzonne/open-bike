@@ -12,8 +12,9 @@ export class ParkController {
     }
 
     @Get()
-    async findAll(){
-        return await this.parkService.findAll()
+    findAll(){
+        console.log("ok")
+        return this.parkService.findAll()
     }
 
     @Post()

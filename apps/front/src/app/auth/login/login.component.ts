@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  formGroup = new FormGroup({
+  form = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
   })
@@ -19,10 +19,14 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.formGroup.getRawValue())
-    this.http.post('/api/auth/login', this.formGroup.value).subscribe((response) => {
+    console.log(this.form.value)
+    this.http.post('/api/auth/login', this.form.value).subscribe((response) => {
       console.log(response)
     })
+  }
+
+  change($event: any) {
+    this.form.patchValue({[$event.target.name]: $event.target.value})
   }
 
 }
