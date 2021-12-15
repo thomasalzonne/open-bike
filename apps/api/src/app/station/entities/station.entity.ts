@@ -14,10 +14,10 @@ export class Station {
   @Column()
   capacity: number;
   
-  @Column()
+  @Column({ type: 'float'})
   lon: number;
 
-  @Column()
+  @Column({ type: 'float'})
   lat: number;
 
   @ManyToOne(type => Park, park => park.stations)

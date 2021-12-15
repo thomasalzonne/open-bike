@@ -17,6 +17,7 @@ export interface ManageStationDto{
   name : string;
   capacity : number;
   park?: ManageParkDto;
+  bikes?: [];
   lon : number;
   lat : number;
 }
@@ -32,4 +33,12 @@ export interface ManageParkDto{
 export interface ManageBikeDto{
   id : number; 
   station? : ManageStationDto;
+}
+
+export interface BikePosition { 
+  bikeId: number, 
+  position: { 
+    lon: number; 
+    lat: number; 
+  }
 }

@@ -25,7 +25,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [AppComponent, HomeComponent, RentComponent],
   imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, SocketIoModule.forRoot(config), LayoutModule, BannerModule],
-  providers: [{
+providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

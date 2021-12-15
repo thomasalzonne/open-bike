@@ -13,7 +13,7 @@ export class StationService {
         return this.stationRepository.insert(station)
     }
     findAll(){
-        return this.stationRepository.find();
+        return this.stationRepository.find({ relations: ['bikes']});
     }
     
     getById(id: number) {
