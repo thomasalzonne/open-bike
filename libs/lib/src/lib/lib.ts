@@ -16,6 +16,7 @@ export interface ManageStationDto{
   id : number; 
   name : string;
   capacity : number;
+  park?: ManageParkDto;
   lon : number;
   lat : number;
 }

@@ -24,7 +24,7 @@ export class CreateComponent {
       if(r.id) {
         this.editId = r.id
         this.http.get<ManageBikeDto>('/api/bike/' + this.editId).subscribe((response) => {
-          this.form.patchValue(response)
+          this.form.patchValue({...response, station: response.station?.id})
         })
       }
     })
@@ -36,7 +36,7 @@ export class CreateComponent {
       this.http.post('/api/bike', this.form.value).subscribe()
     }
     else {
-      this.http.patch('/api/bike/' + this.editId, { station: { id: 1 }}).subscribe()
+      this.http.patch('/api/bike/' + this.editId, this.form.value).subscribe()
     }
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { ManageBikeDto, ManageStationDto, ManageParkDto } from '@open-bike/lib';
+import { ManageStationDto, ManageParkDto } from '@open-bike/lib';
 
 @Component({
   selector: 'open-bike-create',
@@ -28,7 +28,7 @@ export class CreateComponent {
       if(r.id) {
         this.editId = r.id
         this.http.get<ManageStationDto>('/api/station/' + this.editId).subscribe((response) => {
-          this.form.patchValue(response)
+          this.form.patchValue({...response, park: response.park?.id})
         })
       }
     })
@@ -40,11 +40,12 @@ export class CreateComponent {
       this.http.post('/api/station', this.form.value).subscribe()
     }
     else {
-      this.http.patch('/api/station/' + this.editId, { station: { id: 1 }}).subscribe()
+      this.http.patch('/api/station/' + this.editId, this.form.value).subscribe()
     }
   }
 
   change($event: any) {
+    console.log($event.target.value)
     this.form.patchValue({[$event.target.name]: $event.target.value})
   }
 
