@@ -26,7 +26,7 @@ const routes: Routes = [
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
-    multi: true,
+    multi: true
   }],
   bootstrap: [AppComponent],
 })
