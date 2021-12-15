@@ -9,33 +9,7 @@ import { ManageBikeDto, ManageParkDto } from '@open-bike/lib';
 })
 export class RentComponent implements OnInit {
   selectedPark ?: ManageParkDto;
-  parks : ManageParkDto[]= [
-    {
-      id: 1,
-      name : 'Parc de la roseraie',
-      city: 'Toulouse',
-      bikes: [
-        {
-          id : 0,
-          stationId : 1
-        },
-        {
-          id : 1,
-          stationId : 1
-        },
-        {
-          id : 2,
-          stationId : 1
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Parc du Vigan',
-      city: 'Albi',
-      bikes : []
-    }
-  ]
+  parks : ManageParkDto[]= []
   bikes :ManageBikeDto[] = []
   bikeId : number = 0;
   constructor( private http: HttpClient) {
@@ -46,8 +20,7 @@ export class RentComponent implements OnInit {
     })
   }
   Choose(park: ManageParkDto){
-    this.selectedPark = park
-    this.bikes = park.bikes
+    console.log(park)
   }
   ChooseBike(bike: ManageBikeDto){
     if(!navigator.geolocation){

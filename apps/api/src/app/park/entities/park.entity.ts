@@ -10,6 +10,6 @@ export class Park {
   @Column()
   name: string;
 
-  @OneToMany(type => Station, station => station.id)
+  @OneToMany(type => Station, station => station.park)
   stations: Station[];
 }

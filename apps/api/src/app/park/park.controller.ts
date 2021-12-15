@@ -13,7 +13,6 @@ export class ParkController {
 
     @Get()
     findAll(){
-        console.log("ok")
         return this.parkService.findAll()
     }
 
