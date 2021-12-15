@@ -26,14 +26,6 @@ export class MapComponent implements OnInit {
       'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
     }
   }
-  layer = marker([ 46.879966, -121.726909 ], {
-    icon: icon({
-      iconSize: [ 25, 41 ],
-      iconAnchor: [ 13, 41 ],
-      iconUrl: 'assets/marker-icon.png',
-      shadowUrl: 'assets/marker-shadow.png'
-    }).addTo(options)
-  });
   ngOnInit(): void {
   }
 
