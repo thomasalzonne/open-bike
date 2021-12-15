@@ -3,7 +3,7 @@
     <form class="flex flex-col items-center max-w-lg px-5 mx-auto space-y-2"
     [formGroup]="form" (submit)="submit()">
         <h1 class="w-full text-2xl font-semibold">Connexion</h1>
-        <label class="w-full mt-2 font-medium" for="email">Adresse mail</label>
+        <label class="w-full mt-2 font-medium" for="email">Adresse mail - {{ form.errors?.email }}</label>
         <input type="text" (change)="change($event)" name="email" formGroupName="email" placeholder="Email"/>
         <label class="w-full mt-2 font-medium" for="password">Mot de passe</label>
         <input type="password" (change)="change($event)" name="password" formGroupName="password" placeholder="Password" />

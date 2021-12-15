@@ -12,7 +12,7 @@ import { ManageParkDto } from '@open-bike/lib';
 export class CreateComponent {
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required, Validators.minLength(2)])
   });
 
   editId?: number;

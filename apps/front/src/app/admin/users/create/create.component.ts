@@ -12,10 +12,10 @@ import { ManageUserDto } from '@open-bike/lib';
 export class CreateComponent {
 
   form = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    email: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     role: new FormControl('', [Validators.required])
   });
 
