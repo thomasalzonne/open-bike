@@ -9,11 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component'
 import { BannerModule } from './layout/banner/banner.module';
+import { RentComponent } from './rent/rent.component';
 
 const config: SocketIoConfig = { url: '/' };
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'map', loadChildren: () => import('./map/map.module').then(m => m.MapModule) },
+  { path: 'rent', loadChildren: () => import('./rent/rent.module').then(m => m.RentModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   
 ];

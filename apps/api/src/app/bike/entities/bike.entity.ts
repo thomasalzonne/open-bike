@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, OneToOne, OneToMany, ManyToOne } from 'typeorm';
 import { Station } from '../../station/entities/station.entity';
 
 @Entity()
@@ -6,6 +6,6 @@ export class Bike {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(type => Station, station => station.id)
-  stations: Station;
+  @ManyToOne(type => Station, station => station.id)
+  station: Station;
 }

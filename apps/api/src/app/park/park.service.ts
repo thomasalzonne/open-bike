@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpService, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Park } from './entities/park.entity';
@@ -10,11 +10,19 @@ export class ParkService {
     constructor(@InjectRepository(Park) private parkRepository: Repository<Park>) {
 
     }
+    private park : ManageParkDto[] = [
+        {
+            id: 1,
+            name : 'Parc de la Roseraie',
+            city: 'Toulouse'
+        }
+    ]
     createPark(park : ManageParkDto){
         return this.parkRepository.insert(park)
     }
     findAll(){
-        return this.parkRepository.find();
+        // return this.parkRepository.find();
+        return this.park;
     }
     
     getById(id: number) {
