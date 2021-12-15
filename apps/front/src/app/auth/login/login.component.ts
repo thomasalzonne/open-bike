@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'open-bike-login',
@@ -13,16 +14,15 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   })
 
-  constructor(private http: HttpClient) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   submit() {
-    console.log(this.form.value)
-    this.http.post('/api/auth/login', this.form.value).subscribe((response) => {
-      console.log(response)
-    })
+    const email = this.form.value.email;
+    const password = this.form.value.password;
+    this.authService.login(email, password).subscribe();
   }
 
   change($event: any) {

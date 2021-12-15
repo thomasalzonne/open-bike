@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BannerModule } from './layout/banner/banner.module';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 const config: SocketIoConfig = { url: '/' };
 const routes: Routes = [
@@ -19,7 +20,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, SocketIoModule.forRoot(config), LayoutModule, BannerModule],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

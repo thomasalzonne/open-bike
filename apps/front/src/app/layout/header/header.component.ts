@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ManageUserDto } from '@open-bike/lib';
+import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'open-bike-header',
@@ -9,7 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   @Input() transparent: boolean = false;
-  constructor() { }
+  $user: BehaviorSubject<ManageUserDto | null>
+  constructor(private authService: AuthService) { 
+    this.$user = authService.user
+  }
 
   ngOnInit(): void {
     console.log(this.transparent)
