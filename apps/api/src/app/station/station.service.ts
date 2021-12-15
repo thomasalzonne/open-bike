@@ -17,7 +17,7 @@ export class StationService {
     }
     
     getById(id: number) {
-        return this.stationRepository.findOne(id, { relations: ['park']});
+        return this.stationRepository.findOne(id, { relations: ['park','bikes']});
     }
 
     update(id: number, station){

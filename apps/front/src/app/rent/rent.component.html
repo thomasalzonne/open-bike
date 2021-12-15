@@ -16,9 +16,6 @@
                                     Nom
                                 </th>
                                 <th class="px-6 py-2 text-xs text-gray-500">
-                                    Ville
-                                </th>
-                                <th class="px-6 py-2 text-xs text-gray-500">
                                     Séléction
                                 </th>
                             </tr>
@@ -34,10 +31,7 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-500">{{park.city}}</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="Choose(park)">Choisir ce parc</button>
+                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="choosePark(park)">Choisir ce parc</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -45,13 +39,50 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="!bikes?.length && selectedPark" class="bikepart">
+        <div *ngIf="!stations?.length && selectedPark" class="stationpart">
+            Nous n'avons malheureusement pas encore de stations dans ce parc.
+        </div>
+        <div *ngIf="stations?.length">
+            <div class="w-full">
+                <div class="border-b border-gray-200 shadow">
+                    <table class="table-fixed">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Nom de la station
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Capacité
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Séléction
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let station of stations">
+                                <td class="px-6 py-4 flex">
+                                    <div class="id">{{station.name}}</div>
+                                </td>
+                                <td class="px-6 py-4 flex">
+                                    <div class="id">{{station.capacity}} vélos</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="chooseStation(station)">Choisir cette station</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!bikes?.length && selectedStation" class="bikepart">
             Nous n'avons malheureusement plus de vélo disponible dans les stations de ce parc.
         </div>
         <div *ngIf="bikes?.length" class="bikepart">
             <div class="w-full">
                 <div class="border-b border-gray-200 shadow">
-                    <table class="table-fixed">
+                    <table class="table-auto">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-2 text-xs text-gray-500">
@@ -69,7 +100,7 @@
                                     <img class="w-20 h-auto" src="https://lapierre-shopware.accell.cloud/thumbnail/76/f3/dc/1604483174/eSensium%20300%20D062%20(1)_800x800.png" alt="">
                                 </td>
                                 <td class="px-6 py-4">
-                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="ChooseBike(bike)">Choisir ce vélo</button>
+                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="chooseBike(bike)">Choisir ce vélo</button>
                                 </td>
                             </tr>
                         </tbody>

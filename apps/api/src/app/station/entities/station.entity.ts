@@ -1,5 +1,5 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Bike } from '../../bike/entities/bike.entity';
 import { Park } from '../../park/entities/park.entity';
 
@@ -23,6 +23,6 @@ export class Station {
   @ManyToOne(type => Park, park => park.stations)
   park: Park;
 
-  @OneToMany(type => Bike, bike => bike.id, { onDelete: 'CASCADE' })
+  @OneToMany(type => Bike, bike => bike.station, { onDelete: 'CASCADE' })
   bikes: Bike[];
 }

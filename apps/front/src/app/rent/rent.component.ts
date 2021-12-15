@@ -1,32 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ManageBikeDto, ManageParkDto } from '@open-bike/lib';
-
+import { ManageBikeDto, ManageParkDto, ManageStationDto } from '@open-bike/lib';
 @Component({
   selector: 'open-bike-rent',
   templateUrl: './rent.component.html',
   styleUrls: ['./rent.component.css']
 })
-export class RentComponent implements OnInit {
+export class RentComponent {
   selectedPark ?: ManageParkDto;
+  selectedStation ?: ManageStationDto;
   parks : ManageParkDto[]= []
+  stations ?: ManageStationDto[] = []
   bikes :ManageBikeDto[] = []
-  bikeId : number = 0;
+  bikeId = 0;
   constructor( private http: HttpClient) {
-    http.get('/api/park').subscribe((res : any) => {
-      res.map((el: ManageParkDto) => {
-        this.parks.push(el)
-      });
+    http.get<ManageParkDto[]>('/api/park').subscribe((res: any) => {
+      this.parks = res
     })
   }
-  Choose(park: ManageParkDto){
-    console.log(park)
+  choosePark(park: ManageParkDto){
+    this.selectedPark = park
+    this.stations = park.stations
   }
-  ChooseBike(bike: ManageBikeDto){
+  chooseStation(station: ManageStationDto){
+    this.selectedStation = station
+    this.http.get('/api/station/'+station.id).subscribe((res : any) => {
+      this.bikes = res.bikes
+    })
+  }
+  chooseBike(bike: ManageBikeDto){
     if(!navigator.geolocation){
       return alert('Nous ne pouvons pas vous géolocaliser et ne pouvons pas vous laisser louer un vélo. Désolé')
     }
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.getCurrentPosition( (position) => {
       console.log(position)
     }, function(){
       alert("Nous n'arrivons pas à vous localiser. Veuillez réessayer.")
@@ -38,6 +44,5 @@ export class RentComponent implements OnInit {
       }
     })
   }
-  ngOnInit(): void {}
 
 }

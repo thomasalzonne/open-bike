@@ -6,6 +6,6 @@ export class Bike {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(type => Station, station => station.id, { onDelete: 'CASCADE' })
+  @ManyToOne(type => Station, station => station.bikes, { onDelete: 'CASCADE' })
   station: Station;
 }
