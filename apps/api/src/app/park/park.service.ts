@@ -14,7 +14,51 @@ export class ParkService {
         {
             id: 1,
             name : 'Parc de la Roseraie',
-            city: 'Toulouse'
+            city: 'Toulouse',
+            bikes : [
+                {
+                  id : 0,
+                  stationId : 1
+                },
+                {
+                  id : 1,
+                  stationId : 1
+                },
+                {
+                  id : 2,
+                  stationId : 1
+                }
+            ]
+        },
+        {
+            id: 2,
+            name : 'Parc de la pizza',
+            city: 'Toulouse',
+            bikes : [
+                {
+                  id : 12,
+                  stationId : 0
+                }
+            ]
+        },
+        {
+            id: 3,
+            name : 'Parc de la boule de neige',
+            city: 'Paris',
+            bikes : [
+                {
+                  id : 154,
+                  stationId : 3
+                },
+                {
+                  id : 123,
+                  stationId : 3
+                },
+                {
+                  id : 148,
+                  stationId : 3
+                }
+            ]
         }
     ]
     createPark(park : ManageParkDto){

@@ -24,6 +24,7 @@ export interface ManageParkDto{
   id : number; 
   name : string;
   city : string;
+  bikes : ManageBikeDto[];
   stations? : ManageStationDto[];
 }
 

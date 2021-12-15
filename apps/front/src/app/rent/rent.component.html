@@ -1,15 +1,81 @@
-<p>rent works!</p>
-<div class="parkpart">
-    <div *ngFor="let park of parks" class="max-w-sm rounded overflow-hidden shadow-lg">
-        <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">{{park.name}}</div>
+<div class="flex flex-col">
+    <div class="h-20">
+        <open-bike-header ></open-bike-header>
+    </div>
+    <div class="flex">
+        <div class="parkpart">
+            <div class="w-full">
+                <div class="border-b border-gray-200 shadow">
+                    <table class="table-fixed">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    ID
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Nom
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Ville
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Séléction
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr *ngFor="let park of parks" class="whitespace-nowrap">
+                                <td class="px-6 py-4 text-sm text-gray-500">
+                                    {{park.id}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">
+                                        {{park.name}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-500">{{park.city}}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="Choose(park)">Choisir ce parc</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="px-6 pt-4 pb-2">
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{park.id}}</span>
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{park.city}}</span>
+        <div *ngIf="!bikes?.length && selectedPark" class="bikepart">
+            Nous n'avons malheureusement plus de vélo disponible dans les stations de ce parc.
+        </div>
+        <div *ngIf="bikes?.length" class="bikepart">
+            <div class="w-full">
+                <div class="border-b border-gray-200 shadow">
+                    <table class="table-fixed">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Vélo
+                                </th>
+                                <th class="px-6 py-2 text-xs text-gray-500">
+                                    Séléction
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let bike of bikes">
+                                <td class="px-6 py-4 flex">
+                                    <div class="id">{{bike.id}}</div>
+                                    <img class="w-20 h-auto" src="https://lapierre-shopware.accell.cloud/thumbnail/76/f3/dc/1604483174/eSensium%20300%20D062%20(1)_800x800.png" alt="">
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button class="px-4 py-1 text-sm text-white bg-blue-400 rounded" (click)="ChooseBike(bike)">Choisir ce vélo</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div *ngIf="bikes?.length" class="bikepart">
-salut
 </div>
