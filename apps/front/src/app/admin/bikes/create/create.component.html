@@ -1,5 +1,9 @@
+<h2 class="px-5 pt-5 text-xl font-semibold">{{ editId ? 'Editer' : 'Créer' }}</h2>
+
 <form [formGroup]="form" (submit)="submit()" class="max-w-lg px-5 pt-5 space-y-2">
-    <input type="number" (change)="change($event)"
-    name="stationId" formGroupName="stationId">
-    <input type="submit" value="Créer">
+    <select name="station" formGroupName="station">
+        <option *ngFor="let station of stations" [value]="station" 
+        [selected]="station?.id === form.value?.station?.id">{{ station.name }}</option>
+    </select>
+    <input type="submit" [value]="editId ? 'Editer' : 'Créer'">
 </form>

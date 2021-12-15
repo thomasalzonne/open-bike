@@ -1,1 +1,7 @@
-<p>create works!</p>
+<h2 class="px-5 pt-5 text-xl font-semibold">{{ editId ? 'Editer' : 'Créer' }}</h2>
+
+<form [formGroup]="form" (submit)="submit()" class="max-w-lg px-5 pt-5 space-y-2">
+    <input type="text" placeholder="Name"
+    name="name" formGroupName="name" (change)="change($event)" [value]="form.value.name">
+    <input type="submit" [value]="editId ? 'Editer' : 'Créer'">
+</form>

@@ -13,7 +13,6 @@ import { StationsComponent } from './stations/stations.component';
 import { UsersComponent } from './users/users.component';
 import { ParksComponent } from './parks/parks.component';
 import { LayoutComponent } from './layout/layout.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 
 const routes: Routes = [
@@ -32,6 +31,42 @@ const routes: Routes = [
       {
         path: 'bikes/edit/:id',
         component: CreateBike
+      },
+      {
+        path: 'stations',
+        component: StationsComponent
+      },
+      {
+        path: 'stations/create',
+        component: CreateStation
+      },
+      {
+        path: 'stations/edit/:id',
+        component: CreateStation
+      },
+      {
+        path: 'parks',
+        component: ParksComponent
+      },
+      {
+        path: 'parks/create',
+        component: CreatePark
+      },
+      {
+        path: 'parks/edit/:id',
+        component: CreatePark
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: 'users/create',
+        component: CreateUser
+      },
+      {
+        path: 'users/edit/:id',
+        component: CreateUser
       },
     ]
   },

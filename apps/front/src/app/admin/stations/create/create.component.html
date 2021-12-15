@@ -1,1 +1,17 @@
-<p>create works!</p>
+<h2 class="px-5 pt-5 text-xl font-semibold">{{ editId ? 'Editer' : 'Créer' }}</h2>
+
+<form [formGroup]="form" (submit)="submit()" class="max-w-lg px-5 pt-5 space-y-2">
+    <input type="text" placeholder="Name"
+    name="name" formGroupName="name" (change)="change($event)" [value]="form.value.name">
+    <select name="station" formGroupName="station">
+        <option *ngFor="let park of parks" [value]="park" 
+        [selected]="park?.id === form.value?.park?.id">{{ park.name }}</option>
+    </select>
+    <input type="text" placeholder="capacity"
+    name="capacity" formGroupName="capacity" (change)="change($event)" [value]="form.value.capacity">
+    <input type="text" placeholder="lon"
+    name="lon" formGroupName="lon" (change)="change($event)" [value]="form.value.lon">
+    <input type="text" placeholder="lat"
+    name="lat" formGroupName="lat" (change)="change($event)" [value]="form.value.lat">
+    <input type="submit" [value]="editId ? 'Editer' : 'Créer'">
+</form>

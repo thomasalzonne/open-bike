@@ -7,9 +7,7 @@ import { Bike } from './entities/bike.entity';
 @Injectable()
 export class BikeService {
 
-    constructor(@InjectRepository(Bike) private bikeRepository: Repository<Bike>) {
-
-    }
+    constructor(@InjectRepository(Bike) private bikeRepository: Repository<Bike>) {}
     createBike(bike : ManageBikeDto){
         return this.bikeRepository.insert(bike)
     }
@@ -18,7 +16,7 @@ export class BikeService {
     }
     
     getById(id: number) {
-        return this.bikeRepository.findOne(id);
+        return this.bikeRepository.findOne(id, { relations:['station'] })
     }
 
     update(id: number, bike){
