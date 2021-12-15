@@ -20,9 +20,9 @@ export class Station {
   @Column()
   lat: number;
 
-  @ManyToOne(type => Park, park => park.id)
+  @ManyToOne(type => Park, park => park.id, { onDelete: 'CASCADE' })
   park: Park;
 
-  @OneToMany(type => Bike, bike => bike.id)
+  @OneToMany(type => Bike, bike => bike.id, { onDelete: 'CASCADE' })
   bikes: Bike[];
 }

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ManageParkDto } from '@open-bike/lib';
 
 @Component({
   selector: 'open-bike-parks',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParksComponent implements OnInit {
 
-  constructor() { }
+  parks: ManageParkDto[] = []
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<ManageParkDto[]>('/api/park').subscribe((res) => this.parks = res)
+  }
+
+  delete(id: number) {
+    this.http.delete('/api/park/' + id).subscribe(() => {})
   }
 
 }

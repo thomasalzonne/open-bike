@@ -1,1 +1,12 @@
 <open-bike-layout></open-bike-layout>
+<div class="grid grid-cols-2 gap-2 p-5">
+    <div class="flex flex-col bg-white border border-gray-200 shadow" *ngFor="let bike of bikes">
+        <div class="p-5">
+            <span>Vélo {{ bike.id}}</span>
+        </div>
+        <div class="flex items-center w-full px-2 py-2 space-x-2 bg-gray-100">
+            <button [routerLink]="'edit/' + bike.id" class="btn">Edit</button>
+            <button class="btn error" (click)="delete(bike.id)">Delete</button>
+        </div>
+    </div>
+</div>
