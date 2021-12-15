@@ -10,6 +10,6 @@ export class AuthController {
     @UseGuards(AuthGuard('local'))
     @Post('login')
     async login(@Request() req) {
-        return  this.jwtService.signAsync({ id: req.user.id });
+        return this.jwtService.signAsync({ id: req.user.id });
     }
 }

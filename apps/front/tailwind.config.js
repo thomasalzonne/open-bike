@@ -15,6 +15,7 @@ const colors = require('tailwindcss/colors')
 // }, 6.10KB !!
 
 module.exports = {
+  mode: "jit",
   purge: {
     enabled: true,
     content: [__dirname + '/src/**/*.{html,ts}']

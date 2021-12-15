@@ -8,17 +8,19 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  form = new FormGroup({
-    'email': new FormControl(''),
-    'password': new FormControl(''),
+  formGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
   })
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   submit() {
-    this.http.post('/api/auth/login', this.form.value).subscribe((response) => {
+    console.log(this.formGroup.getRawValue())
+    this.http.post('/api/auth/login', this.formGroup.value).subscribe((response) => {
       console.log(response)
     })
   }
