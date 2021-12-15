@@ -11,3 +11,11 @@ canvas {
     margin: 0;
     height: 100vh;
 }
+
+input[type="text"], input[type="number"], input[type="password"] {
+    @apply w-full p-3 border-2 border-gray-100 h-14;
+}
+
+button[type="submit"], input[type="submit"] {
+    @apply w-full h-12 font-medium text-white bg-blue-500 rounded shadow;
+}

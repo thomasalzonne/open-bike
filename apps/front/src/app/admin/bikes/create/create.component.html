@@ -1,0 +1,5 @@
+<form [formGroup]="form" (submit)="submit()" class="max-w-lg px-5 pt-5 space-y-2">
+    <input type="number" (change)="change($event)"
+    name="stationId" formGroupName="stationId">
+    <input type="submit" value="Créer">
+</form>
