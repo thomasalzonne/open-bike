@@ -1,8 +1,29 @@
-<header class="h-20 w-full fixed z-20 flex items-center" [class.bg-gray-800]="!transparent">
-    <a 
-    class="backdrop-filter backdrop-blur bg-white bg-opacity-5 border-white border border-opacity-10 ml-auto mr-4 h-12 text-base px-5 flex items-center text-white w-min font-semibold hover:bg-opacity-10 relative rounded whitespace-nowrap" 
-    [routerLink]="'/auth'" >
-    <svg fill="currentColor" class="mr-4" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.598 9h-1.055c1.482-4.638 5.83-8 10.957-8 6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5c-5.127 0-9.475-3.362-10.957-8h1.055c1.443 4.076 5.334 7 9.902 7 5.795 0 10.5-4.705 10.5-10.5s-4.705-10.5-10.5-10.5c-4.568 0-8.459 2.923-9.902 7zm12.228 3l-4.604-3.747.666-.753 6.112 5-6.101 5-.679-.737 4.608-3.763h-14.828v-1h14.826z"/></svg>
-        Login
-    </a>
+<header class="fixed z-20 flex items-center justify-between w-full h-20" [class.bg-gray-800]="!transparent">
+    <ng-container *ngIf="!($user | async)">
+        <h1 [routerLink]="'/'" class="mx-5 text-lg font-semibold tracking-tighter text-white transition-all cursor-pointer hover:text-blue-200">OpenBike</h1>
+        <a class="relative flex items-center h-12 px-5 ml-auto mr-4 text-base font-semibold text-white bg-white border border-white rounded backdrop-filter backdrop-blur bg-opacity-5 border-opacity-10 w-min hover:bg-opacity-10 whitespace-nowrap"
+            [routerLink]="'/auth'">
+            <svg fill="currentColor" class="mr-4" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+                fill-rule="evenodd" clip-rule="evenodd">
+                <path
+                    d="M2.598 9h-1.055c1.482-4.638 5.83-8 10.957-8 6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5c-5.127 0-9.475-3.362-10.957-8h1.055c1.443 4.076 5.334 7 9.902 7 5.795 0 10.5-4.705 10.5-10.5s-4.705-10.5-10.5-10.5c-4.568 0-8.459 2.923-9.902 7zm12.228 3l-4.604-3.747.666-.753 6.112 5-6.101 5-.679-.737 4.608-3.763h-14.828v-1h14.826z" />
+            </svg>
+            Login
+        </a>
+    </ng-container>
+    <ng-container *ngIf="($user | async) as user">
+        <div class="flex items-center px-3 space-x-2">
+            <h1 [routerLink]="'/'" class="mx-5 text-lg font-semibold tracking-tighter text-white transition-all cursor-pointer hover:text-blue-200">OpenBike</h1>
+            <div class="w-8 h-8 bg-white bg-opacity-25 rounded-full"></div>
+            <div class="flex flex-col">
+                <span class="text-sm font-medium text-white">{{ user.firstName }}</span>
+                <span class="text-xs text-white opacity-75" *ngIf="user.role === 'ADMIN'">{{ user.role }}</span>
+                <span class="text-xs text-white opacity-75" *ngIf="user.role !== 'ADMIN'">{{ user.email }}</span>
+            </div>
+        </div>
+        <div class="flex items-center px-3 space-x-2" *ngIf="user.role !== 'ADMIN'">
+            <button class="px-3 btn" [routerLink]="'/admin'">Administration</button>
+        </div>
+
+    </ng-container>
 </header>

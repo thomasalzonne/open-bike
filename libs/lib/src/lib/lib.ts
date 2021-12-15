@@ -30,5 +30,5 @@ export interface ManageParkDto{
 
 export interface ManageBikeDto{
   id : number; 
-  stationId : number;
+  station? : ManageStationDto;
 }
