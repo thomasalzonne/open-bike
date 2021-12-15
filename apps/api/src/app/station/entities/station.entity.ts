@@ -1,5 +1,6 @@
 
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne, OneToMany } from 'typeorm';
+import { Bike } from '../../bike/entities/bike.entity';
 import { Park } from '../../park/entities/park.entity';
 
 @Entity()
@@ -21,4 +22,7 @@ export class Station {
 
   @ManyToOne(type => Park, park => park.id)
   park: Park;
+
+  @OneToMany(type => Bike, bike => bike.id)
+  bikes: Bike[];
 }
