@@ -50,6 +50,14 @@ export class RentComponent implements OnInit {
     this.bikes = park.bikes
   }
   ChooseBike(bike: ManageBikeDto){
+    if(!navigator.geolocation){
+      return alert('Nous ne pouvons pas vous géolocaliser et ne pouvons pas vous laisser louer un vélo. Désolé')
+    }
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log(position)
+    }, function(){
+      alert("Nous n'arrivons pas à vous localiser. Veuillez réessayer.")
+    })
     this.bikeId = bike.id
     this.bikes.map(el => {
       if(el.id === this.bikeId){
@@ -57,7 +65,6 @@ export class RentComponent implements OnInit {
       }
     })
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
