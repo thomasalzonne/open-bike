@@ -1,6 +1,6 @@
 import { UserService } from './../user/user.service';
 import { Injectable } from '@nestjs/common';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +8,8 @@ export class AuthService {
 
     credentialsAreValid(email: string, password: string) {
         return this.userService.getByEmail(email).pipe(
+            tap(user => console.log(user)),
             map(user => !!user && user.password === password ? user : false)
-        )
+        ).toPromise()
     }
 }
