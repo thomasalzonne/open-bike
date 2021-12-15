@@ -5,6 +5,7 @@
     name="name" formGroupName="name" (change)="change($event)" [value]="form.value.name">
     <select name="park" (change)="change($event)" [value]="form.value.park"
     formGroupName="park">
+        <option value=""></option>
         <option *ngFor="let park of parks" [value]="park.id"
         [selected]="park?.id === form.value?.park">{{ park.name }}</option>
     </select>
