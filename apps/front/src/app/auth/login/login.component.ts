@@ -8,16 +8,17 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(2)]),
-  })
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+  });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   submit() {
     const email = this.form.value.email;
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   change($event: any) {
-    this.form.patchValue({[$event.target.name]: $event.target.value})
+    this.form.patchValue({ [$event.target.name]: $event.target.value });
   }
-
 }

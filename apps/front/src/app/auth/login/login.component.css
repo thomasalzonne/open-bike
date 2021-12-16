@@ -1,0 +1,3 @@
+.form-control.ng-untouched.ng-valid {
+  border: 1px solid red;
+}
