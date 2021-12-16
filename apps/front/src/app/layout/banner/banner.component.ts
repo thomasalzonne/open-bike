@@ -1,6 +1,9 @@
+import { AuthService } from './../../auth/auth.service';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
+import { BehaviorSubject } from 'rxjs';
+import { ManageUserDto } from '@open-bike/lib';
 
 @Component({
   selector: 'open-bike-banner',
@@ -17,7 +20,10 @@ export class BannerComponent implements OnInit, AfterViewInit {
   light!: BABYLON.HemisphericLight;
   planet?: BABYLON.Mesh
   radius = 8
-  constructor() { }
+  $user: BehaviorSubject<ManageUserDto | null>
+  constructor(private authService: AuthService) { 
+    this.$user = this.authService.user
+  }
 
   ngOnInit(): void {
   }
