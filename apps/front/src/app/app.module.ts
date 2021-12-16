@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BannerModule } from './layout/banner/banner.module';
 import { RentComponent } from './rent/rent.component';
-import { MapModule } from './map/map.module';
+
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
